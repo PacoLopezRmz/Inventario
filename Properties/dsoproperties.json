@@ -1,0 +1,161 @@
+{
+    "name": "microservice-monapertura",
+    "version": "1.0.1",
+    "group": "mx/supercore",
+    "ecsParams": {
+        "dev": {
+          "ecrRepository": {
+            "repositoryName": "ecr-scr-msvmonape",
+            "region": "us-east-1"
+          },
+          "taskDefinition": {
+            "family": "TD-SCR-MSVMONAPE",
+            "taskRoleARN": "arn:aws:iam::720127996856:role/ECSTaskExecutionRole",
+            "taskExecutionRoleARN": "arn:aws:iam::720127996856:role/ECSTaskExecutionRole",
+            "containerName": "CONTAINER-SCR-MSVMONAPE",
+            "portMappings": [
+              {
+                "hostPort": 8081,
+                "protocol": "tcp",
+                "containerPort": 8081
+              },
+              {
+                "hostPort": 1521,
+                "protocol": "tcp",
+                "containerPort": 1521
+              }
+            ],
+            "environment": [
+              {
+
+                "name": "ORACLE_PORT",
+                "value": "1521"
+
+              },
+              {
+
+                "name": "ORACLE_SERVICENAME",
+                "value": "ORCL"
+
+              },
+              {
+
+                "name": "ORACLE_USER ",
+                "value": "ETS"
+
+              },
+              {
+
+                "name": "ORACLE_PASSWORD  ",
+                "value": "UsrEts=01"
+
+              }
+
+
+            ],
+            "logConfiguration": {
+              "logDriver": "awslogs",
+              "options": {
+                "awslogs-group": "CWLG-SCR-MSVMONAPE",
+                "awslogs-region": "us-east-1",
+                "awslogs-stream-prefix": "ecs"
+              }
+            },
+            "tags": [
+              {
+                "key": "Name",
+                "value": "TD-SCR-MSVMONAPE"
+              }
+            ],
+            "memory": "512",
+            "cpu": "256",
+            "region": "us-east-1"
+          },
+          "serviceDefinition": {
+            "cluserName": "SUPERCORE-OPERADOR-DEV-CLUSTER",
+            "serviceName": "SRV-SCR-MSVMONAPE",
+            "desiredCount": 1,
+            "region": "us-east-1"
+          }
+        },
+      "qa": {
+        "ecrRepository": {
+          "repositoryName": "ecr-scr-msvmonape",
+          "region": "us-east-1"
+        },
+        "taskDefinition": {
+          "family": "TD-SCR-MSVMONAPE",
+          "taskRoleARN": "arn:aws:iam::280561261227:role/ECSTaskExecutionRole",
+          "taskExecutionRoleARN": "arn:aws:iam::280561261227:role/ECSTaskExecutionRole",
+          "containerName": "CONTAINER-SCR-MSVMONAPE",
+          "portMappings": [
+            {
+              "hostPort": 8081,
+              "protocol": "tcp",
+              "containerPort": 8081
+            },
+            {
+              "hostPort": 1521,
+              "protocol": "tcp",
+              "containerPort": 1521
+            }
+          ],
+          "environment": [
+            {
+
+              "name": "ORACLE_PORT",
+              "value": "1521"
+
+            },
+            {
+
+              "name": "ORACLE_SERVICENAME",
+              "value": "ORCL"
+
+            },
+            {
+
+              "name": "ORACLE_USER ",
+              "value": "ETS"
+
+            },
+            {
+
+              "name": "ORACLE_PASSWORD  ",
+              "value": "UsrEts=01"
+
+            }
+          ],
+          "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+              "awslogs-group": "CWLG-SCR-MSVMONAPE",
+              "awslogs-region": "us-east-1",
+              "awslogs-stream-prefix": "ecs"
+            }
+          },
+          "tags": [
+            {
+              "key": "Name",
+              "value": "TD-SCR-MSVMONAPE"
+            }
+          ],
+          "memory": "512",
+          "cpu": "256",
+          "region": "us-east-1"
+        },
+        "serviceDefinition": {
+          "cluserName": "SUPERCORE-OPERADOR-QA-CLUSTER",
+          "serviceName": "SRV-SCR-MSVMONAPE",
+          "desiredCount": 1,
+          "region": "us-east-1"
+        }
+      },
+        "prod": {
+           "ecrRepository": {
+                "repositoryName": "",
+                "region": ""
+            }
+        }
+    }
+}
